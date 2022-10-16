@@ -1,0 +1,69 @@
+﻿
+*{
+    color:floralwhite !important;
+}
+.bg-light, body, .bg-secondary, .btn-light, .dropdown-menu, .wrapper, .table-light, .align-middle, .modal-content {
+    background-color: #111111 !important;
+    transition-duration: 500ms;
+    border: none !important;
+}
+
+.backImgShop {
+    background-image: url("../../images/backDark.jpg");
+}
+
+.container-fluid{
+    background-color:rgba(17,17,17,0.6);
+}
+
+.product-item:hover .product-action {
+    background: rgba(17, 17, 17, 0.6);
+}
+
+#theme-button,.card {
+    background-color: #111111 !important;
+}
+
+input,select,option{
+    color:black !important;
+}
+
+.table-light th, .table-light td, .table-light thead th, .table-light tbody + tbody {
+    border: none !important;
+}
+
+
+.table-hover tbody tr:hover {
+    color: #6C757D;
+    background-color: #111111 !important;
+    transition-duration: 500ms;
+}
+
+.LoginCart {
+    box-shadow: rgb(255 255 187) 0 0 40px !important;
+}
+
+.container {
+    background-color: none !important;
+}
+
+.bnt-close{
+    color:white;
+}
+
+.bg-dark, .alert-warning {
+    background-color: rgb(35, 35, 36) !important;
+    border:none !important;
+}
+
+.input-group > .form-control {
+    color: floralwhite !important;
+}
+
+footer i {
+    color: #111111 !important;
+}
+
+.LoginCard {
+    background-color: rgba(0,0,0,0) !important;
+}

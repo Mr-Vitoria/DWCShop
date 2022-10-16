@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Register";
+}
+
+@model User
+
+
+<link rel="stylesheet" href="~/user/css/login.css" asp-append-version="true" />
+<div class="cont">
+    <div class="LoginCard">
+        <h1>Создание профиля</h1>
+        <form method="post" asp-action="Register" asp-controller="Login">
+            
+            <input asp-for="TypeOfAcc" value="Common" type="hidden"/>
+            <label asp-for="FirstName"></label>
+            <br />
+            <input asp-for="FirstName" class="form-control"/>
+            <br />
+            <label asp-for="SurName"></label>
+            <br />
+            <input asp-for="SurName" class="form-control"/>
+            <br />
+            <label asp-for="Login"></label>
+            <br />
+            <input asp-for="Login" class="form-control" />
+            <br />
+            <label asp-for="Phone"></label>
+            <br />
+            <input asp-for="Phone" class="form-control"/>
+            <br />
+            <label asp-for="Email"></label>
+            <br />
+            <input asp-for="Email" type="email" class="form-control" />
+            <br />
+            <label asp-for="Password"></label>
+            <br />
+            <input asp-for="Password" class="form-control"/>
+            <br />
+            <label>Повторите пароль:</label>
+            <br />
+            <input name="confirmPassword" type="password" class="form-control"/>
+            <br />
+            <button type="submit" class="btn btn-primary">Создать</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"></partial>
+}

@@ -1,0 +1,177 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/user/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/user/scss/StyleSheet.scss" asp-append-version="true" />
+    <link rel="stylesheet" href="~/user/ExamShop.styles.css" asp-append-version="true" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="~/user/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="~/user/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/user/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="#" id="theme-link">
+</head>
+<body>
+    <div class="backImgShop"></div>
+    @if(TempData["ModelStatus"]!=null)
+    {
+    <div class="cont">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+             @TempData["ModelStatus"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    }
+    <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row bg-secondary py-1 px-xl-5">
+            <div class="col-lg-6 d-none d-lg-block">
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My Account</button>
+                        @if (Context.Request.Cookies["Login"] == null)
+                        {
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" asp-action="Login" asp-controller="Login">Sign in</a>
+                                <a class="dropdown-item" asp-action="Register" asp-controller="Login">Sign up</a>
+                            </div>
+                        }
+                        else
+                        {
+
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" asp-action="Profile" asp-controller="Login">Profile</a>
+                                <a class="dropdown-item" asp-action="SignOut" asp-controller="Login">Sign out</a>
+                            </div>
+                        }
+                    </div>
+                    <button id="theme-button">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                </div>
+                @if (Model != null)
+                {
+                    <div class="d-inline-flex align-items-center d-block d-lg-none">
+                        <a asp-action="Favourites" asp-controller="Shop" class="btn px-0 ml-2">
+                            <i class="fas fa-heart text-dark"></i>
+                            <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">@ShopViewModel.CountItemFacourites</span>
+                        </a>
+                        <a asp-action="ShopCart" asp-controller="Shop" class="btn px-0 ml-2">
+                            <i class="fas fa-shopping-cart text-dark"></i>
+                            <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">@ShopViewModel.CountItemCart</span>
+                        </a>
+                    </div>
+
+                }
+            </div>
+        </div>
+        <div class="row align-items-center py-3 px-xl-5 d-none d-lg-flex">
+            <div class="col-lg-4">
+                <a asp-action="Index" asp-controller="Home" class="text-decoration-none">
+                    <span class="h1 text-uppercase px-2">DWC shop</span>
+                </a>
+            </div>
+            <div class="col-lg-4 col-6 text-left">
+                <form asp-action="ShopList" asp-controller="Shop" method="get">
+                    <div class="input-group">
+                        <input name="seacrhTitle" type="text" class="form-control" placeholder="Search for products">
+                        <div class="input-group-append">
+                            <button type="submit" class="input-group-text bg-secondary text-primary">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-4 col-6 text-right">
+                <p class="m-0">Customer Service</p>
+                <h5 class="m-0">8 (920) 997 25 01</h5>
+            </div>
+        </div>
+    </div>
+
+
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+    <footer class="border-top footer text-muted">
+        <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
+            <div class="row px-xl-5 pt-5">
+                <div class="col-lg-8 col-md-12">
+                    <div class="row">
+
+                        <div class="col-md-4 mb-5">
+                            <h6 class="text-secondary text-uppercase mt-4 mb-3">Follow Us</h6>
+                            <div class="d-flex">
+                                <a class="btn btn-primary btn-square mr-2" href="https://twitter.com/VitoriaVitvi"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-primary btn-square mr-2" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-primary btn-square mr-2" href="https://vk.com/vitvis"><i class="fab fa-vk"></i></a>
+                                <a class="btn btn-primary btn-square" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+                <div class="col-md-6 px-xl-0">
+                    <p class="mb-md-0 text-center text-md-left text-secondary">
+                        &copy; 2022 All Rights Reserved. Designed
+                        by DWC Company
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <div class="modal fade" id="prodModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Product detail</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="mySpinner spinner-border text-warning" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="~/user/lib/easing/easing.min.js"></script>
+    <script src="~/user/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="~/user/mail/jqBootstrapValidation.min.js"></script>
+    <script src="~/user/js/main.js"></script>
+
+    <script src="~/user/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/user/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/user/js/site.js" asp-append-version="true"></script>
+    <script src="https://kit.fontawesome.com/5bbb62820a.js" crossorigin="anonymous"></script>
+
+    <script>
+        SetFirstTheme();
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

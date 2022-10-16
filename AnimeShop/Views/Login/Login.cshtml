@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+@model User
+<link rel="stylesheet" href="~/user/css/login.css" asp-append-version="true" />
+<div class="container">
+<div class="cont">
+    <div class="LoginCard">
+        <h1>Вход в профиль</h1>
+        <form method="post" asp-action="Login" asp-controller="Login">
+            <input type="hidden" asp-for="Id"/>
+            <label asp-for="Phone">Номер телефона:</label>
+            <br />
+            <input asp-for="Phone" class="form-control" />
+            <br />
+            <label asp-for="Password">Пароль:</label>
+            <br />
+            <input asp-for="Password" class="form-control" type="password"/>
+            <br />
+            <button type="submit" class="btn btn-primary">Продолжить</button>
+        </form>
+    </div>
+</div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"></partial>
+}

@@ -1,0 +1,32 @@
+﻿
+@model Product
+
+
+<div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+    <div class="product-item bg-light mb-4">
+        <div class="product-img position-relative overflow-hidden">
+            <img class="img-fluid w-100" src="@Model.ImageURl" alt="">
+            <div class="product-action">
+                <a class="btn btn-outline-dark btn-square" href="Shop/ProductModal/?id=@Model.Id" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#prodModal" data-open="True"><i class="fa fa-shopping-cart"></i></a>
+                <a class="btn btn-outline-dark btn-square" asp-route-returnURL="@Context.Request.Path" asp-route-id="@Model.Id" asp-controller="Shop" asp-action="AddToFavourites"><i class="far fa-heart"></i></a>
+                <a class="btn btn-outline-dark btn-square" asp-route-id="@Model.Id" asp-route-returnURL="@Context.Request.Path" asp-controller="Shop" asp-action="ProductDetail"><i class="fa fa-search"></i></a>
+            </div>
+        </div>
+        <div class="text-center py-4">
+            <a class="h6 text-decoration-none text-truncate" asp-route-id="@Model.Id" asp-route-returnURL="@Context.Request.Path" asp-action="ProductDetail" asp-controller="Shop">@Model.Title</a>
+            <div class="d-flex align-items-center justify-content-center mt-2">
+                @if (Model.Discount != 0)
+                {
+                    <h5>₽@(Model.Price * Model.Discount)</h5>
+                    <h6 class="text-muted ml-2"><del>₽@Model.Price</del></h6>
+                }
+                else
+                {
+                    <h5>₽@Model.Price</h5>
+
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
